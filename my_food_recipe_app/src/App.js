@@ -22,7 +22,8 @@ export default class App extends Component{
     
     return (
       <div className="App">
-        <h1 className="Question">Best Breakfast of all time?</h1>
+        <h1>THE PLAYGROUND</h1>
+        <h3 className="Question">Best Breakfast of all time?</h3>
         <select className="Answer">
             <option>Cererals</option>
             <option>Cookies</option>
@@ -32,11 +33,13 @@ export default class App extends Component{
         </select>
         <button onClick={this.updateState}>confirm</button>
 
-        <h1>favorite color</h1>
+        <h3>favorite color</h3>
         <select>
           <option>Blue</option>
         </select>
        <button onClick={this.updateColorState}>Submit Color</button>
+
+       <h2>JUST RUBY CODE AND PRACTICE</h2>
 
       </div>
     );
