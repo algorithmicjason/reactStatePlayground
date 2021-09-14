@@ -1,50 +1,59 @@
-
-import React, { Component } from 'react'; 
+import React, { useEffect, useState } from 'react'; 
 import './App.css';
+import Recipe from './Recipe'
 
-export default class App extends Component{
 
-  state= {
-    answered: false,
-    color: 'red'
+const App = () => {
+
+  const APP_ID = 'c90b5b01';
+  const APP_KEY = '70f624f99c37101b386ca7c8a46d8b72'
+  // let homepageLoadSearch = 'chicken'
+  // const exampleReq = `https://api.edamam.com/search?q=${searchInput}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+  
+  const [recipes, displayedRecipes] = useState([]);
+  const [searchInput, updateSearchInput] = useState('');
+  const [query, setQuery] = useState('chicken');
+
+  useEffect(() => {
+    fetchApiHome()
+
+  }, [query])
+
+  const fetchApiHome = async () => {
+    const fetchAPI = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+    const res = await fetchAPI.json()
+    displayedRecipes(res.hits)
+    // console.log("fetch api home")
   }
-  updateState = () => {
-    
-    this.setState({answered: true})
-    
+
+  // const fetchApiSearch = async () => {
+  //   const fetchApiSearch = await fetch(`https://api.edamam.com/search?q=${searchInput}&app_id=${APP_ID}&app_key=${APP_KEY}`);
+  //   const res = await fetchApiSearch.json()
+  //   console.log(res)
+  //   console.log("fetch api search")
+  // }
+
+  const updateSearch = e => {
+    updateSearchInput(e.target.value)
+    console.log(searchInput)
   }
-  updateColorState = () =>{
-    this.setState({
-      color: "blue"
-    })
+
+  const getSearch = e => {
+    e.preventDefault()
+    setQuery(searchInput) 
   }
-  render() {
-    
-    return (
-      <div className="App">
-        <h1>THE PLAYGROUND</h1>
-        <h3 className="Question">Best Breakfast of all time?</h3>
-        <select className="Answer">
-            <option>Cererals</option>
-            <option>Cookies</option>
-            <option>Sandwhich</option>
-            <option>Tacos</option>
-            <option>PB&J</option>
-        </select>
-        <button onClick={this.updateState}>confirm</button>
 
-        <h3>favorite color</h3>
-        <select>
-          <option>Blue</option>
-        </select>
-       <button onClick={this.updateColorState}>Submit Color</button>
+  return (
+    <div className="APP">
+      <form onSubmit={getSearch} className='search-form'>
+        <input className='search-bar' type='text' value={searchInput} onChange={updateSearch} /> 
+        <button className='search-button' type="submit" >Search</button>
+      </form>
+      {recipes.map(recipe => (
+        <Recipe title={recipe.recipe.label} calories={recipe.recipe.calories} image={recipe.recipe.image}/>
+      ))}
+    </div>
+  );
+};
 
-       <h2>JUST RUBY CODE AND PRACTICE</h2>
-
-      </div>
-    );
-    }
-}
-
-
-
+export default App;
