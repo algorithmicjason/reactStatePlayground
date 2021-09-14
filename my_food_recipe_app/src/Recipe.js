@@ -1,4 +1,4 @@
-//class Component
+//class Component to display what's fetched
 import React from 'react';
 
 const Recipe = ({title, calories, image}) => {

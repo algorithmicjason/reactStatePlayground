@@ -9,36 +9,30 @@ const App = () => {
   const APP_ID = 'c90b5b01';
   const APP_KEY = '70f624f99c37101b386ca7c8a46d8b72'
   
-  const [recipes, displayedRecipes] = useState([]);
-  const [searchInput, updateSearchInput] = useState('');
-  const [query, setQuery] = useState('chicken');
+  const [recipes, displayedRecipes] = useState([]); //this is what's returned from the API
+  const [searchInput, updateSearchInput] = useState(''); //this is whats in the search bar
+  const [query, setQuery] = useState('chicken'); //this is whats being queried to the API
 
   useEffect(() => {
-    fetchApiHome()
+    fetchApi()
   }, [query])
 
-  const fetchApiHome = async () => {
+  const fetchApi = async () => {
     const fetchAPI = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
     const res = await fetchAPI.json()
     displayedRecipes(res.hits)
   }
 
-  //NOT NEEDED
-  // const fetchApiSearch = async () => {
-  //   const fetchApiSearch = await fetch(`https://api.edamam.com/search?q=${searchInput}&app_id=${APP_ID}&app_key=${APP_KEY}`);
-  //   const res = await fetchApiSearch.json()
-  //   console.log(res)
-  //   console.log("fetch api search")
-  // }
-
   const updateSearch = (e) => {
     updateSearchInput(e.target.value)
     console.log(searchInput)
+    //the process of tracking what is inputted into the search bar
   }
 
   const getSearch = e => {
     e.preventDefault()
-    setQuery(searchInput) 
+    setQuery(searchInput)
+    //the process of setting query state to what's in the search input 
   }
 
   return (
