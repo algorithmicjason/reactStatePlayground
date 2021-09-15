@@ -16,6 +16,7 @@ const App = () => {
   useEffect(() => {
     fetchApi()
   }, [query])
+  //this is what runs as soon as the page is loaded & chicken state is default
 
   const fetchApi = async () => {
     const fetchAPI = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
@@ -32,6 +33,7 @@ const App = () => {
   const getSearch = e => {
     e.preventDefault()
     setQuery(searchInput)
+    updateSearchInput('');
     //the process of setting query state to what's in the search input 
   }
 
@@ -41,9 +43,17 @@ const App = () => {
         <input className='search-bar' type='text' value={searchInput} onChange={updateSearch} /> 
         <button className='search-button' type="submit" >Search</button>
       </form>
-      {recipes.map(recipe => (
-        <Recipe title={recipe.recipe.label} calories={recipe.recipe.calories} image={recipe.recipe.image}/>
+      <div className={'recipes'}>
+      {recipes.map(recipe => ( 
+        <Recipe 
+          title={recipe.recipe.label} 
+          key={recipe.recipe.label} 
+          ingredients={recipe.recipe.ingredients} 
+          image={recipe.recipe.image} 
+          time={recipe.recipe.totalTime}
+        />
       ))}
+      </div>
     </div>
   );
 };
