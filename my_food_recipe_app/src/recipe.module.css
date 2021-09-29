@@ -1,13 +1,13 @@
 /* only effects Recipe.js this is called a css module usually targets a specific component */
 /* targets and styles all containers */
-.recipe{
-    border-radius: 10px;
-    box-shadow: 0px 5px 20px rgb(71, 71, 71);
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: rgb(253,245,230);
-    align-items: center;
-    min-width: 40%;
+.recipe {
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px rgb(71, 71, 71);
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(253, 245, 230);
+  align-items: center;
+  min-width: 40%;
 }

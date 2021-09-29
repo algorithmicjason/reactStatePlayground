@@ -1,35 +1,35 @@
 .App {
   min-height: 100vh;
-  background-color: rgb(255,248,220);
+  background-color: rgb(255, 248, 220);
 }
 
-.search-form{
+.search-form {
   min-height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.search-bar{
+.search-bar {
   width: 50%;
   border: none;
   padding: 10px;
-  background-color: rgb(245,245,245);
+  background-color: rgb(245, 245, 245);
 }
 
-.search-button{
+.search-button {
   background: black;
   border: none;
   padding: 10px 20px;
   color: white;
 }
 
-.recipes{
+.recipes {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.title{
+.title {
   font-family: fantasy;
 }
